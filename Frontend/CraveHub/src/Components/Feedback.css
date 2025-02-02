@@ -1,0 +1,70 @@
+.testimonials{
+    background-color:  rgba(10, 19, 22, 1);
+}
+.feedback-img{
+    display: flex;
+    width: 450px;
+    margin-left: 830px;
+    margin-top: -151px;
+    margin-bottom: 65px;
+    gap: 20px;
+   
+}
+
+.feedback{
+    width: 1330px;
+    height: 600.97px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 50px;
+    margin-top: 80px;
+    margin-left: 160px;
+    margin-bottom: 68px;
+}
+.feedback-heading{
+    width: 524px;
+    height: 191.36px;
+   color: rgba(214, 130, 64, 1);
+   margin-top: 60px;
+   margin-left: 50px;
+}
+.feedback-heading h2{
+    font-size: 45px;
+    box-shadow:8px 0px 14px rgb(230 171 126);
+    
+}
+.feedback-heading h3{
+    font-size: 18px;
+}
+.reviews{
+    display: flex;
+}
+.feedback-card{
+    margin-left: 30px;
+    width: 400px;
+    height: 200px;
+   border: 3px solid  rgba(214, 130, 64, 1);
+    border-radius: 30px;
+    position: relative;
+    box-shadow: 15px 8px 16px rgba(0, 0, 0, 0.2);
+}
+.feedback-description{
+    font-size: 22px;
+    font-family: Epilogue;
+    line-height: 30px;
+    padding: 10px 10px;
+}
+.feedback-title{
+    font-size: 24px;
+    font-family: Fredoka One;
+    margin-left: 15px;
+
+}
+.circle{
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    top: 125px;
+    right: 25px;
+    background-color: rgba(214, 130, 64, 1);
+    border-radius: 37.5px;
+}

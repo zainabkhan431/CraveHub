@@ -1,0 +1,135 @@
+/* body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    background-color: #f0f0f0;
+  } */
+  
+  .login-page{
+    
+    margin: 35px 310px;
+    /* margin-left: 200px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 1100px;
+    height: 700px;
+    /* background-color: rgb(224, 99, 20); */
+}
+
+.login-img{
+ width: 750px;
+ height: 700px;
+ background-color:rgb(251, 86, 7);
+ 
+}
+.login-img img{
+    width: 452px;
+    height: 427px;
+    margin-top: 123px;
+    margin-left: 20px;
+
+}
+.login-form {
+    padding-top: 260px;
+    background-color: rgb(222, 217, 194); /* Form background */
+    width: 700px;
+    height: 619px;
+    padding: 40px 30px; /* Inner spacing for content */
+   
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+  }
+  
+  .login-form h2 {
+    padding-top: 74px;
+    font-size: 40px;
+    font-family: Lexend Deca;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #2c2c2c; /* Darker text for the heading */
+  }
+  .login-form input::placeholder {
+    color: #000; 
+   
+   
+  }
+  .login-form input[type="text"],
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+    width: 80%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #f7f2ec;
+    font-family: Lexend Deca;
+   
+  }
+  .login-checkbox{
+    width: 80%;
+    padding: 10px 15px;
+    margin: 10px 36px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    background-color: #f7f2ec;
+   
+  }
+  .login-form input[type="checkbox"] {
+    /* margin-right: 10px; */
+    width: 34px;
+    height: 18px;
+    font-family: Lexend Deca;
+   
+  }
+  
+  .login-form label {
+    font-size: 18px;
+    color: #333;
+    font-family: Lexend Deca;
+   
+    
+  }
+  
+  .login-form .sign-up-btn {
+    background-color: #ff6600; /* Orange button */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 50%;
+    font-family: Lexend Deca;
+   
+  }
+  
+  .login-form .sign-up-btn:hover {
+    background-color: #e65500;
+  }
+  
+  .login-form p {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #333;
+    font-family: Lexend Deca;
+  }
+  
+  .login-form a {
+    color: #ff6600;
+    text-decoration: none;
+    font-family: Lexend Deca;
+  
+  }
+  
+  .login-form a:hover {
+    text-decoration: underline;
+  }
+  

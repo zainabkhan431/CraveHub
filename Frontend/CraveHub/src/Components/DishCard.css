@@ -1,0 +1,43 @@
+.card h2{
+    font-weight: bold;
+    margin-left: 46px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    font-size: 25px;
+    text-decoration: underline;
+}
+.dish-card {
+  cursor: pointer;
+    width: 500px;
+    margin-left: 30px;
+    height: 140px;
+    display: flex; /* Flexbox for horizontal alignment */
+    align-items: center; /* Center vertically */
+    gap: 20px; /* Space between image and details */
+    background-color: #e7dcdc; /* Optional: Add a background color */
+    padding: 20px;
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+  }
+  
+  .dish-image img {
+    width: 170px; /* Adjust size of the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Rounded corners for the image */
+  }
+  
+  .dish-detail {
+    flex: 1; /* Take up the remaining space */
+  }
+  
+  .dish-detail h3 {
+    font-size: 23px;
+    margin: 0 0 10px;
+  }
+  
+  .dish-detail p {
+    font-size: 20px;
+    margin: 5px 0;
+    color: #555; /* Optional: Subtle text color */
+  }
+  

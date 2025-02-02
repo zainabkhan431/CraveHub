@@ -1,0 +1,36 @@
+.rating {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #ffd700;
+    
+  }
+  .stars{
+    margin-top: -5px;
+    font-size: 25px;
+    
+
+  }
+
+  .rating-value{
+    font-size: 19px;
+      color: black;
+  }
+  .rating-score {
+    margin-right: 8px;
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .full-star {
+    color: #ffd700;
+  }
+  
+  .half-star {
+    color: #ffd700;
+  }
+  
+  .empty-star {
+    color: #ddd;
+  }
+  

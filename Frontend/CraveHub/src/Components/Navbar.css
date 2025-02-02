@@ -1,0 +1,125 @@
+
+.navbar {
+  font-family: "Poppins";
+    position: fixed; 
+    top: 0px;
+    left: 0;
+    height: 50px;
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    transition: smooth background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000; 
+  }
+  .navbar-scrolled {
+    background-color: rgba(10, 19, 22, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+  }
+ 
+  .navbar-logo {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    
+  }
+  
+  .navbar-logo a {
+    text-decoration: none;
+    color: rgba(214, 130, 64, 1);
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-logo a:hover {
+    color:white; 
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 1.9rem;
+    list-style: none;
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  .navbar-links li a {
+    display: inline-block;
+    text-decoration: none;
+    
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    color: rgba(255, 255, 255, 1);
+   
+    transition: color 0.3s ease, transform 0.3s ease; 
+  }
+  
+  .navbar-links li a:hover {
+    color:  rgba(214, 130, 64, 1); 
+    transform: translateY(-4px);
+    text-decoration: underline;
+  }
+  .searchbar input{
+    width: 300px;
+    height: 28px;
+    border-radius: 15px;
+    border: 0;
+    padding-left: 10px;
+    position: relative;
+
+  }
+  .searchbar img{
+    height: 15px;
+    position: absolute;
+    left: 650px;
+    top: 30px;
+
+  }
+  
+ 
+  .navbar-actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .navbar-actions .login-btn,
+  .navbar-actions .cart-btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-actions  .login-btn {
+    background-color: rgba(214, 130, 64, 1);
+    color:#333333;
+    border: 2px solid rgba(214, 130, 64, 1);
+  }
+ 
+  
+  .navbar-actions .login-btn:hover {
+    background-color:white; 
+    border-color:  rgba(214, 130, 64, 1);
+  }
+  
+  .navbar-actions .cart-btn {
+    background-color:  rgba(214, 130, 64, 1); 
+    color:#333333;
+    border: 2px solid  rgba(214, 130, 64, 1);
+  }
+  
+  .navbar-actions .cart-btn:hover {
+    background-color: white;
+   
+    border-color:  rgba(214, 130, 64, 1);
+  }
+  
+  

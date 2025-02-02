@@ -1,0 +1,82 @@
+.categories-detail{
+    height: 100vh;
+    background-color:rgba(10, 19, 22, 1);
+}
+.search-bar {
+    margin-bottom: 20px;
+    margin-top: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar input {
+    width: 649px;
+    max-width: 500px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 1) ;;
+    border-radius: 50px;
+    height: 25px;
+}
+.feature-categories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 250px;
+    margin-top: 100px;
+    width: 70vw;
+    border: 1px solid wheat;
+    background-color:rgba(214, 130, 64, 1);
+    border-radius: 80px;
+    height: 450px;
+}
+.feature-categories h2{
+    color: rgba(255, 255, 255, 1) ;
+    font-size: 28px;
+    margin-top: -20px;
+}
+.card-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width:60vw;
+}
+.categories-card{
+    margin-top: 18px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; 
+    width: 315px;
+    height: 250px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+   
+}
+
+.categories-card:hover {
+    transform: translateY(-7px) scale(1.05); 
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); 
+  }
+  .categories-card h4{
+    height: 40px;
+    font-size: 22px;
+  }
+  .packages h2{
+    color:rgba(214, 130, 64, 1);
+    font-size: 28px;
+    text-decoration: underline;
+  }
+  .experiances{
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 70px;
+  }

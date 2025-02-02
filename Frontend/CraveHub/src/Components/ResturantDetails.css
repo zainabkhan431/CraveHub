@@ -1,0 +1,95 @@
+
+.restaurant-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+    gap: 20px;
+    margin-left: 20px;
+    height: 100%;
+    overflow-y: auto;
+    margin-right: 20px;
+    
+  }
+  
+  .restaurant-card {
+    
+    height: 300px;
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color:#e7dcdc;
+        opacity: 0;
+    color: #000000;
+    transform: translateX(-50px);
+    animation: slideIn 0.5s forwards;
+    perspective: 1000px;
+  }
+  @keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.restaurant-card:hover {
+  transform: scale(1.05); /* Grows smoothly */
+  cursor: pointer;
+}
+
+  
+  .image-styles {
+    margin-right: 20px; /* Add space between image and text */
+    flex-shrink: 0; /* Prevent image from shrinking */
+  }
+  
+  .resturants-image {
+    width: 200px; /* Set a fixed width for the image */
+   height: 150px;
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    margin-top: 45px;
+   
+  }
+  .resturants-image:hover{
+    transform: scale(1.06);
+    
+}
+  .text-styles {
+    flex-grow: 1;
+    margin-left: 55px; /* Make text area take the remaining space */
+  }
+  
+  .restaurant-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .restaurant-description svg,
+  .restaurant-address svg,
+  .restaurant-reviews svg,
+  .restaurant-phone svg,
+  .restaurant-price svg {
+    margin-top: 1px;
+    margin-right: 7px;
+    line-height: 2px;
+    font-size: 27px;
+  }
+  
+  .restaurant-status {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .open {
+    color: green;
+  }
+  
+  .close {
+    color: red;
+  }
+  

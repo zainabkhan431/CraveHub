@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.About-header {
+    position: relative;
+    text-align: center; 
+     overflow: hidden;
+  }
+.About-header h2 {
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 70px;
+    color:rgba(255, 255, 255, 1);;
+    padding: 10px 20px;
+    border-radius: 10px; 
+    z-index: 1;
+  }
+  .About-header .subtitle{
+    font-size: 25px;
+    position: absolute;
+    top: 400px;
+    left: 400px;
+    color:  rgba(255, 255, 255, 1);
+    
+  }
+.About-header img{
+
+    width: 1805px;
+    height:800px;
+    margin-bottom: -4px;
+    }
+    .curved-text {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Barlow", sans-serif;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: rgba(214, 130, 64, 1);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+.about-details{
+     width: 99vw;
+      height: 75vh;
+     background-color:rgba(10, 19, 22, 1);
+     position: relative;
+    }
+ .about-text{
+    gap: 20px;
+    position: absolute;
+    top: 180px;
+    left: 80px;
+    font-size: 25px;
+    width: 600px;
+    color: rgba(255, 255, 255, 1);
+ }   
+ .about-text strong {
+    color: rgb(229, 131, 55);
+    font-size: 2.5rem;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .about-text p {
+    font-size: 1.5rem; 
+    line-height: 1.5; 
+  }
+ .about-img{
+   display: flex;
+   flex-direction: row;
+    width: 700px;
+    position: absolute;
+    top: 10px;
+    left: 800px;
+ }
+.image1{
+    margin-left: 90px;
+    margin-top: 120px;
+ }
+

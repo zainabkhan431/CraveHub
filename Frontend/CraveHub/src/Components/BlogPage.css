@@ -1,0 +1,46 @@
+.blog-page{
+    background-color: rgba(10, 19, 22, 1);;
+}
+.blogspage-image{
+    display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        margin-top: 140px;
+}
+
+.blogpage-description h2{
+    font-size: 30px;
+
+    padding: 0px 320px;
+    color: rgba(255, 255, 255, 1) ;
+    text-align: center;
+    margin-top: 20px;
+}
+.blogpage-description p {
+    font-size: 25px;
+    padding: 0px 200px;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    margin-top: 40px; /* Increased margin-top for more vertical space */
+    line-height: 1.8; /* Adds space between lines of text */
+}
+.specifications p{
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+    color:  #f33037;
+    font-size: 22px;
+    text-transform: capitalize;
+   padding-top: 4px;
+padding-bottom: 4px;
+}
+.blog-divider {
+    width:  50%;
+    height: 2.5px;
+    
+    background-color:rgba(214, 130, 64, 1);
+    border: none;
+    margin-top: 30px;
+    margin-left: 400px;
+  }
