@@ -1,6 +1,235 @@
-.header-image{
-    width: 100vw;
-    height: 60vh;
-    margin-top: 50px;
+.dishes-section {
+  width: 100%;
+  background-color: rgba(10, 19, 22, 1);  padding: 40px 0;
 }
 
+.header-image {
+  width: 100%;
+  height: auto;
+  margin-top: 41px;
+}
+
+.dishes-content {
+  display: flex;
+  /* max-width: 1200px; */
+  margin: auto;
+  gap: 20px;
+}
+
+/* ====== Reservation Form ====== */
+.reservation-form, 
+.budget-input-container {
+  width: 50%; 
+  margin-top: 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.reservation-form h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #333;
+}
+
+.reservation-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pre-booking {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pre-booking label {
+  font-size: 14px;
+}
+
+.reservation-form button, 
+.budget-input-container button {
+  width: 100%;
+  background-color: #ff7b00;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.reservation-form button:hover {
+  background-color: #ff6200;
+}
+
+/* ====== Sidebar ====== */
+.sidebar {
+  width: 200px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sidebar ul li:hover {
+  background: #ff7b00;
+  color: white;
+}
+
+.sidebar input[type="range"] {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* ====== Budget Section ====== */
+.budget-input-container {
+  margin-top: 20px;
+}
+
+.budget-input-container label {
+  font-weight: bold;
+  display: block;
+}
+
+.budget-input-container input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+/* .budget-input-container button {
+  width: 100%;
+  padding: 8px;
+  background-color: #ff7b00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+
+.budget-input-container button:hover {
+  background-color: #ff6200;
+}
+
+/* ====== Dish Display ====== */
+.dish-display {
+  flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dishes-display-div {
+  display: flex
+  ;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+      align-items: center;
+      justify-content: center;
+}
+
+.dish-card {
+  width: 180px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: bisque;
+}
+
+.dish-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.dish-card h4 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.dish-card p {
+  font-size: 14px;
+  margin: 3px 0;
+}
+
+.dish-card button {
+  width: 100%;
+  padding: 6px;
+  background-color: #ff7b00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dish-card button:hover {
+  background-color: #ff6200;
+}
+
+/* ====== Combos Section ====== */
+.combos-section {
+  margin-top: 20px;
+}
+
+.combos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.combo-card {
+  width: 200px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.combo-card h4 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.combos-section h3{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

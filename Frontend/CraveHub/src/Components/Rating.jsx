@@ -4,7 +4,6 @@ const Rating = ({ rating }) => {
  
   // Ensure `rating` is a valid number; if not, default to 0
   const validRating = typeof rating === "number" ? rating : 0;
-console.log(rating);
   const fullStars = Math.floor(validRating);
   const hasHalfStar = validRating % 1 >= 0.5;
 

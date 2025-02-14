@@ -37,7 +37,7 @@ export default function App() {
 <Route path="/BlogDetail" element={<BlogDetail/>}/>
 <Route path="/RestaurantBlogs/BlogDetail" element={<BlogDetail/>}/>
 
-      <Route path="/restaurant-dishes" element={ <ResturantDishes/>} />
+      <Route path="/ResturantDishes" element={ <ResturantDishes/>} />
      
     </Routes>
   </Router>

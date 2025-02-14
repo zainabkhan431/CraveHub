@@ -1,6 +1,6 @@
 import Navbar from "../Components/Navbar.jsx";
 import Header from "../Components/Header.jsx";
-import Categories from "../Components/Categories.jsx";
+// import Categories from "../Components/Categories.jsx";
 import Resturant from "../Components/Resturant.jsx";
 import BlogSection from "../Components/BlogSection.jsx";
 import About from "../Components/About.jsx";
@@ -13,7 +13,7 @@ const Home = () => {
         <Navbar/>
        <Header/>
        
-       <Categories/>
+       {/* <Categories/> */}
      
        <Resturant/>
        <WorkSteps/>

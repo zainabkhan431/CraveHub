@@ -28,6 +28,7 @@
 flex-wrap: wrap;
     height: auto;
     width: 100vw;
+    background-color:rgba(10, 19, 22, 1); ;
 
 }
 .blog-data{
