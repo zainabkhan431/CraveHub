@@ -29,9 +29,10 @@ background-color: rgba(10, 19, 22, 1);
 }
 .blogs{
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap:45px;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+    flex-wrap: wrap;
 }
 .blog-container{
   margin-top: 120px;
@@ -66,4 +67,16 @@ margin-left: 20px;
 }
 .blog-details p:hover{
   color: #5C5C5B;
+}
+@media (max-width:1050px){
+  .blog-heading h2 {
+    font-size: 50px;
+    
+}
+}
+@media (max-width:750px){
+  .blog-heading h2 {
+    font-size: 45px;
+    
+}
 }

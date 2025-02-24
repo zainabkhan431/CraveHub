@@ -159,3 +159,111 @@
   .cart-menu.open ~ .cart-overlay {
     display: block;
   }
+
+  @media (max-width:1220px){
+    .navbar{
+      width: 95%;
+    }
+  }
+  
+@media (max-width: 1000px) {
+.navbar-logo {
+    font-size: 26px;   
+}
+.navbar-links li a {
+  
+  font-size: 18px;
+  font-weight: 480;
+  
+}
+.navbar-actions .login-btn, .navbar-actions .cart-btn {
+  font-size: 0.7rem;
+}
+
+}
+@media (max-width: 840px) {
+  .navbar{
+    width: 93%;
+  }
+  .navbar-logo {
+      font-size: 22px;   
+  }
+  .navbar-links li a {
+    
+    font-size: 18px;
+    font-weight: 450;
+    
+  }
+  .navbar-actions .login-btn, .navbar-actions .cart-btn {
+    font-size: 0.6rem;
+  }
+  
+  }
+  @media (max-width: 740px) {
+    .navbar{
+      width: 91%;
+    }
+    .navbar-logo {
+      font-size: 15px; 
+      margin-left: -27px;
+    }
+    .navbar-links li a {
+      
+      font-size: 17px;
+    }
+    .navbar-actions .login-btn, .navbar-actions .cart-btn {
+      font-size: 0.6rem;
+    }
+    .cart-icon {
+      font-size: 24px;
+
+  }
+  .navbar-links {
+    
+    gap: 0.7rem;
+}
+    
+    }
+
+    @media (max-width: 610px) {
+   
+      .navbar-links li a {
+        font-size: 16px;
+      }
+      .navbar-actions .login-btn, .navbar-actions .cart-btn {
+        font-size: 0.6rem;
+      }
+      .cart-icon {
+        font-size: 23px;
+    }
+    .navbar-links {
+      gap: 0.6rem;
+  }
+  .navbar-actions {
+
+    gap: 0.3rem;
+}   
+      }
+      
+    @media (max-width: 560px) {
+      .navbar-logo {
+        font-size: 15px; 
+        margin-left: -27px;
+      }
+      .navbar-links li a {
+        font-size: 15px;
+      }
+      .navbar-actions .login-btn, .navbar-actions .cart-btn {
+        font-size: 0.5rem;
+      }
+      .cart-icon {
+        font-size: 22px;
+    }
+    .navbar-links {
+      gap: 0.5rem;
+  }
+  .navbar-actions {
+
+    gap: 0.2rem;
+}   
+      }

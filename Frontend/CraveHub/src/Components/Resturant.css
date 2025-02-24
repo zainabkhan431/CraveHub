@@ -15,7 +15,7 @@
   .resturants-card {
     height: 470px;
     display: inline-block; /* Keep cards inline for horizontal layout */
-    width: 280px;
+    width: 275px;
     margin-left: 40px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -26,7 +26,13 @@
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
   }
-  
+  .resturant{
+    display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+  }
   .resturants-card:hover {
     transform: translateX(-4px); /* Slight lift on hover */
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);

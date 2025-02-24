@@ -22,7 +22,7 @@
   }
   .header-text h1 {
     font-size: 70px;
-    font-weight: 600px;
+    /* font-weight: 600px; */
     color: rgba(255, 255, 255, 1);
   }
   .header-text p {
@@ -59,4 +59,49 @@
 .btn:hover{
     background-color :rgb(229, 131, 55);
     color: rgba(255, 255, 255, 1);
+}
+
+@media (max-width:1000px){
+  .header-text h1{
+    font-size: 55px;
+  }
+  .header-text p{
+    font-size: 23px;
+  }
+  .btn{
+    width: 200px; 
+    font-size: 14px;
+  }
+}
+@media (max-width:840px){
+  .header-text h1{
+    font-size: 39px;
+  }
+  .header-text p{
+    font-size: 20px;
+  }
+  .btn{
+    width: 180px; 
+    font-size: 14px;
+  }
+  .btn img {
+    height: 27px;
+    margin-right: 35px;
+}
+}
+@media (max-width:560px){
+  .header-text h1{
+    font-size: 35px;
+  }
+  .header-text p{
+    font-size: 18px;
+  }
+  .btn{
+    width: 160px; 
+    font-size: 14px;
+  }
+  .btn img {
+    height: 27px;
+    margin-right: 35px;
+}
 }

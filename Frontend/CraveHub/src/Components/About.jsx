@@ -5,7 +5,7 @@ function AboutSection() {
   return (
     <section className="about-section">
       <div className="about-container">
-        <h2>About Us</h2>
+        
         <div className="about-image">
           <img src={logo} alt="About Us" />
         </div>

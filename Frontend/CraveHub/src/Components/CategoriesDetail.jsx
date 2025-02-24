@@ -94,8 +94,8 @@ export default function CategoriesDetail() {
           <div className="packages">
             <h2>A Collection of Unique Experiences</h2>
             <div className="experiances">
-              <img src={Container1} alt="Experience 1" />
-              <img src={Container2} alt="Experience 2" />
+              <img src={Container1} alt="Experience 1" className="experiance-img"/>
+              <img src={Container2} alt="Experience 2" className="experiance-img"/>
             </div>
           </div>
 
