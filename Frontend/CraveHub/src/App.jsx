@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import RestaurantCategory from "./pages/RestaurantNames.jsx";
-import ScrollToTop from "./Components/ScrollToTop.jsx"
+import ScrollToTop from "./Components/ScrollToTop.jsx";
 import ResturantDishes from "./pages/ResturantDishes.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
@@ -9,6 +9,9 @@ import RestaurantCategories from "./pages/RestaurantCategories.jsx";
 import RestaurantAbout from "./pages/RestaurantAbout.jsx";
 import RestaurantBlogs from "./pages/RestaurantBlogs.jsx";
 import BlogDetail from "./pages/BlogDetail.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
+import { AuthProvider } from "./AuthContext.jsx";
+import AddRestaurant from "./pages/AddResturant.jsx";
 
 // import Navbar from "./Components/Navbar";
 // import Header from "./Components/Header";
@@ -21,26 +24,32 @@ import BlogDetail from "./pages/BlogDetail.jsx";
 export default function App() {
   return (
     <>
-    
-    <Router>
-    
-       <ScrollToTop/>
-    <Routes>
-     
-      <Route path="/" element={<Home/>} />
-      <Route path="/restaurant-details" element={<RestaurantCategory />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Signup />} />
-<Route path="/RestaurantCategories" element={<RestaurantCategories/>}/>
-<Route path="/RestaurantAbout" element={<RestaurantAbout/>}/>
-<Route path="/RestaurantBlogs" element={<RestaurantBlogs/>}/>
-<Route path="/BlogDetail" element={<BlogDetail/>}/>
-<Route path="/RestaurantBlogs/BlogDetail" element={<BlogDetail/>}/>
+    <AuthProvider>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+        <Route
+            path="/"
+            element={<PrivateRoute element={<Home />} />}
+          />
+          <Route path="/" element={<Home />} />
+          <Route path="/restaurant-details" element={<RestaurantCategory />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Signup />} />
+          <Route
+            path="/RestaurantCategories"
+            element={<PrivateRoute element={<RestaurantCategories />} />}
+          />
+          <Route path="/RestaurantAbout" element={<RestaurantAbout />} />
+          <Route path="/Add-Resturant" element={<AddRestaurant />} />
+          <Route path="/RestaurantBlogs" element={<RestaurantBlogs />} />
+          <Route path="/BlogDetail" element={<BlogDetail />} />
+          <Route path="/RestaurantBlogs/BlogDetail" element={<BlogDetail />} />
 
-      <Route path="/ResturantDishes" element={ <ResturantDishes/>} />
-     
-    </Routes>
-  </Router>
-  </>
+          <Route path="/ResturantDishes" element={<ResturantDishes />} />
+        </Routes>
+      </Router>
+      </AuthProvider>
+    </>
   );
 }

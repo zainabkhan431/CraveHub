@@ -3,8 +3,11 @@ import { Link } from "react-scroll";
 import { Link as LinkRoute } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa"; // Import cart icon
 import "./Navbar.css";
+import { useAuth } from "../AuthContext";
 
 function Navbar() {
+  const { logout} = useAuth();
+  
   const [scrolled, setScrolled] = useState(false);
   const [cartOpen, setCartOpen] = useState(false); // Cart visibility state
 
@@ -44,9 +47,9 @@ function Navbar() {
           </li>
         </ul>
         <div className="navbar-actions">
-          <LinkRoute to="/login" className="login-btn">
+          {!localStorage.getItem("userToken") ?<LinkRoute to="/login" className="login-btn">
             Login
-          </LinkRoute>
+          </LinkRoute> : <button  className="login-btn" onClick={()=>{logout()} }>Logout</button>}
           <LinkRoute to="/register" className="cart-btn">
             Register
           </LinkRoute>

@@ -4,7 +4,7 @@ const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
 const cartRoutes = require('./routes/cartRoutes');
-
+const cors = require("cors");
 
 // Load environment variables
 dotenv.config();
@@ -13,7 +13,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
-
+app.use(cors());
 // Middleware to parse incoming JSON data
 app.use(express.json());
 

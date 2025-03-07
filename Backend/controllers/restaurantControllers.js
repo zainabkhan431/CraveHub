@@ -118,7 +118,7 @@ const updateRestaurant = async (req, res) => {
       restaurant.description = description || restaurant.description;
       restaurant.rating = rating || restaurant.rating;
       restaurant.location = location || restaurant.location;
-      restaurant.menu = dishIds; // Update menu with new dishes
+      restaurant.menu = dishIds; 
 
       const updatedRestaurant = await restaurant.save();
       res.json(updatedRestaurant);
