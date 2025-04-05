@@ -1,0 +1,35 @@
+/* SalesOverviewChart.css */
+.sales-overview-container {
+    background-color: rgb(0 0 0 / 75%);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #374151; /* border-gray-700 */
+    margin-bottom: 32px;
+  }
+  
+  .sales-overview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  
+  .sales-overview-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e5e7eb; /* text-gray-100 */
+  }
+  
+  .sales-chart-container {
+    width: 100%;
+    height: 320px;
+  }
+  
+  .tooltip-content {
+    background-color: rgba(31, 41, 55, 0.8);
+    border-color: #4B5563;
+    color: #E5E7EB;
+  }
+  

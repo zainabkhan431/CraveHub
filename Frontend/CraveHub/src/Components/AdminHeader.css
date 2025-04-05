@@ -1,0 +1,19 @@
+.adminheader {
+    background-color: rgba(31, 41, 55, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #374151;
+  }
+  
+  .adminheader-container{
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .adminheader-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #f3f4f6;
+  }
+  

@@ -4,8 +4,8 @@
     position: fixed; 
     top: 0px;
     left: 0;
-    height: 50px;
-    width: 97%;
+    height: 85px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;

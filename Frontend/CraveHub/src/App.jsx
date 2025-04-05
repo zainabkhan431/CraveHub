@@ -12,14 +12,9 @@ import BlogDetail from "./pages/BlogDetail.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import { AuthProvider } from "./AuthContext.jsx";
 import AddRestaurant from "./pages/AddResturant.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
-// import Navbar from "./Components/Navbar";
-// import Header from "./Components/Header";
-// import Categories from "./Components/Categories";
-// import Title from "./Components/Title";
-// import Resturant from "./Components/Resturant";
-// import BlogSection from "./Components/BlogSection";
-// import About from "./Components/About";
+
 
 export default function App() {
   return (
@@ -33,20 +28,22 @@ export default function App() {
             element={<PrivateRoute element={<Home />} />}
           />
           <Route path="/" element={<Home />} />
-          <Route path="/restaurant-details" element={<RestaurantCategory />} />
+          <Route path="/restaurant-details" element={<PrivateRoute element={<RestaurantCategory />} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
           <Route
             path="/RestaurantCategories"
             element={<PrivateRoute element={<RestaurantCategories />} />}
           />
-          <Route path="/RestaurantAbout" element={<RestaurantAbout />} />
-          <Route path="/Add-Resturant" element={<AddRestaurant />} />
-          <Route path="/RestaurantBlogs" element={<RestaurantBlogs />} />
-          <Route path="/BlogDetail" element={<BlogDetail />} />
-          <Route path="/RestaurantBlogs/BlogDetail" element={<BlogDetail />} />
 
-          <Route path="/ResturantDishes" element={<ResturantDishes />} />
+          <Route path="/RestaurantAbout" element={<PrivateRoute element={<RestaurantAbout />} />} />
+          <Route path="/restaurants" element={<AddRestaurant />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/RestaurantBlogs" element={<PrivateRoute element={<RestaurantBlogs />} />} />
+          <Route path="/BlogDetail" element={<PrivateRoute element={<BlogDetail />} />} />
+          <Route path="/RestaurantBlogs/BlogDetail" element={<PrivateRoute element={<BlogDetail />} />} />
+
+          <Route path="/ResturantDishes" element={<PrivateRoute element={<ResturantDishes />} />} />
         </Routes>
       </Router>
       </AuthProvider>
