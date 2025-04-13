@@ -1,10 +1,25 @@
-import  { useState } from "react";
-import { Box, Button, Paper, Typography, Modal, TextField, Grid } from "@mui/material";
+import { useState } from "react";
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  TextField,
+  Grid,
+  Paper,
+} from "@mui/material";
+import { useEffect } from "react";
+
 import AdminSidebar from "../Components/AdminSidebar";
 import AdminHeader from "../Components/AdminHeader";
+import { motion } from "framer-motion";
+import StatCard from "../Components/StatCard";
+import { Store, Star, MapPin, Phone } from "lucide-react";
 
 export default function AddRestaurant() {
-  const [restaurants, setRestaurants] = useState([]); // Store added restaurants
+  const [restaurants, setRestaurants] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [restaurantData, setRestaurantData] = useState({
     name: "",
     image: "",
@@ -14,27 +29,35 @@ export default function AddRestaurant() {
     phoneNo: "",
     menuDishes: [],
   });
+  const totalRestaurants = restaurants.length;
 
-  const [dish, setDish] = useState({ name: "", price: "", description: "" });
-  const [open, setOpen] = useState(false);
-
+  const topRated = restaurants.filter(r => parseFloat(r.rating) >= 4.5).length;
+  
+  const uniqueCities = new Set(restaurants.map(r => r.location)).size;
+  
+  const contactCount = restaurants.filter(r => r.phoneNo).length;
+  
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/restaurants");
+        const data = await response.json();
+  
+        if (response.ok) {
+          setRestaurants(data);
+        } else {
+          console.error("Failed to fetch restaurants");
+        }
+      } catch (error) {
+        console.error("Error fetching restaurants:", error);
+      }
+    };
+  
+    fetchRestaurants();
+  }, []);
+  
   const handleChange = (e) => {
     setRestaurantData({ ...restaurantData, [e.target.name]: e.target.value });
-  };
-
-  const handleDishChange = (e) => {
-    setDish({ ...dish, [e.target.name]: e.target.value });
-  };
-
-  const addDish = () => {
-    
-    if (dish.name && dish.price && dish.description) {
-      setRestaurantData({
-        ...restaurantData,
-        menuDishes: [...restaurantData.menuDishes, dish],
-      });
-      setDish({ name: "", price: "", description: "" });
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -51,11 +74,7 @@ export default function AddRestaurant() {
 
       if (response.ok) {
         alert("Restaurant added successfully!");
-        
-        // Update state to display new restaurant on the screen
-        setRestaurants([...restaurants, { id: restaurants.length + 1, ...restaurantData }]);
-
-        // Reset form
+        setRestaurants((prev) => [...prev, data]);
         setRestaurantData({
           name: "",
           image: "",
@@ -65,7 +84,6 @@ export default function AddRestaurant() {
           phoneNo: "",
           menuDishes: [],
         });
-
         setOpen(false);
       } else {
         alert(data.message || "Failed to add restaurant");
@@ -76,106 +94,209 @@ export default function AddRestaurant() {
     }
   };
 
+  // Filtered restaurants based on searchTerm
+  const filteredRestaurants = restaurants.filter((r) =>
+    r.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}> 
-    <AdminSidebar/>
-    <Box sx={{ padding: "20px" }}>
-            <AdminHeader heading="Restaurants"/>
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        backgroundColor: "rgb(10 4 4)",
+      }}
+    >
+      <AdminSidebar />
+      <Box
+        flex={1}
+        overflow="auto"
+        position="relative"
+        zIndex={10}
+        sx={{ paddingLeft: "16px", paddingRight: "16px" }}
+      >
+        <AdminHeader heading="Restaurants" />
 
-      <Typography variant="h4" gutterBottom>
-        Manage Restaurants
-      </Typography>
-
-      {/* Add Restaurant Button */}
-      <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
-        Add Restaurant
-      </Button>
-
-      {/* Display Added Restaurants */}
-      <Grid container spacing={2} sx={{ marginTop: "20px" }}>
-        {restaurants.map((restaurant) => (
-          <Grid item xs={12} sm={6} md={4} key={restaurant.id}>
-            <Paper sx={{ padding: "15px", textAlign: "center" }}>
-              <img src={restaurant.image} alt={restaurant.name} style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "5px" }} />
-              <Typography variant="h6" sx={{ marginTop: "10px" }}>{restaurant.name}</Typography>
-              <Typography variant="body2" sx={{ color: "gray" }}>{restaurant.location}</Typography>
-              <Typography variant="body1" sx={{ marginTop: "5px" }}>⭐ {restaurant.rating}</Typography>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
-
-      {/* Modal for Adding Restaurant */}
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 500,
-            bgcolor: "white",
-            p: 3,
-            borderRadius: "10px",
-            boxShadow: 24,
-          }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <Typography variant="h6">Enter Restaurant Details</Typography>
-
-          <Grid container spacing={2} sx={{ marginTop: "10px" }}>
-            <Grid item xs={12}>
-              <TextField fullWidth label="Restaurant Name" name="name" value={restaurantData.name} onChange={handleChange} required />
+          <Grid container spacing={3} mb={4} mt={5}>
+            <Grid item xs={12} sm={6} lg={3}>
+              <StatCard
+                name="Total Restaurants"
+                icon={Store}
+                value={totalRestaurants}
+                color="#6366F1"
+              />
             </Grid>
-            <Grid item xs={12}>
-              <TextField fullWidth label="Image URL" name="image" value={restaurantData.image} onChange={handleChange} required />
+            <Grid item xs={12} sm={6} lg={3}>
+              <StatCard
+                name="Top Rated"
+                icon={Star}
+                value={topRated}
+                color="#8B5CF6"
+              />
             </Grid>
-            <Grid item xs={12}>
-              <TextField fullWidth label="Description" name="description" multiline rows={2} value={restaurantData.description} onChange={handleChange} required />
+            <Grid item xs={12} sm={6} lg={3}>
+              <StatCard
+                name="Cities Covered"
+                icon={MapPin}
+                value={uniqueCities} 
+                color="#EC4899"
+              />
             </Grid>
-            <Grid item xs={6}>
-              <TextField fullWidth label="Rating (1-5)" type="number" name="rating" value={restaurantData.rating} onChange={handleChange} required />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField fullWidth label="Phone Number" name="phoneNo" value={restaurantData.phoneNo} onChange={handleChange} required />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField fullWidth label="Location" name="location" value={restaurantData.location} onChange={handleChange} required />
-            </Grid>
-          </Grid>
-
-          {/* Menu Dishes Section */}
-          <Typography variant="h6" sx={{ marginTop: "15px" }}>
-            Add Dishes
-          </Typography>
-
-          <Grid container spacing={2} sx={{ marginTop: "10px" }}>
-            <Grid item xs={6}>
-              <TextField fullWidth label="Dish Name" name="name" value={dish.name} onChange={handleDishChange} />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField fullWidth label="Price" type="number" name="price" value={dish.price} onChange={handleDishChange} />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField fullWidth label="Dish Description" multiline rows={2} name="description" value={dish.description} onChange={handleDishChange} />
+            <Grid item xs={12} sm={6} lg={3}>
+              <StatCard
+                name="Contact Count"
+                icon={Phone}
+                value={contactCount}
+                color="#10B981"
+              />
             </Grid>
           </Grid>
+        </motion.div>
 
-          <Button sx={{ marginTop: "15px" }} variant="outlined" color="secondary" onClick={addDish}>
-            Add Dish
-          </Button>
+        <Typography variant="h4" color="#fff" gutterBottom>
+          Manage Restaurants
+        </Typography>
 
-          <ul>
-            {restaurantData.menuDishes.map((dish, index) => (
-              <li key={index}>{dish.name} - ${dish.price}</li>
-            ))}
-          </ul>
-
-          <Button sx={{ marginTop: "15px" }} variant="contained" color="primary" onClick={handleSubmit}>
-            Save Restaurant
+        <Box display="flex" alignItems="center" justifyContent="space-between" mt={2} mb={2}>
+          <TextField
+            label="Search Restaurant"
+            variant="outlined"
+            size="small"
+            sx={{ backgroundColor: "#fff", borderRadius: 1 }}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
+            Add Restaurant
           </Button>
         </Box>
-      </Modal>
-    </Box>
+
+        {/* Modal for Adding Restaurant */}
+        <Modal open={open} onClose={() => setOpen(false)}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              bgcolor: "background.paper",
+              boxShadow: 24,
+              p: 4,
+              borderRadius: 2,
+              width: 400,
+            }}
+          >
+            <Typography variant="h6" mb={2}>
+              Add New Restaurant
+            </Typography>
+            <TextField
+              label="Name"
+              fullWidth
+              margin="normal"
+              name="name"
+              value={restaurantData.name}
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              label="Image URL"
+              fullWidth
+              margin="normal"
+              name="image"
+              value={restaurantData.image}
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              label="Description"
+              fullWidth
+              margin="normal"
+              name="description"
+              value={restaurantData.description}
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              label="Rating"
+              type="number"
+              fullWidth
+              margin="normal"
+              name="rating"
+              value={restaurantData.rating}
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              label="Location"
+              fullWidth
+              margin="normal"
+              name="location"
+              value={restaurantData.location}
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              label="Phone Number"
+              fullWidth
+              margin="normal"
+              name="phoneNo"
+              value={restaurantData.phoneNo}
+              onChange={handleChange}
+              required
+            />
+            <Box textAlign="right" mt={2}>
+              <Button onClick={() => setOpen(false)} sx={{ mr: 1 }}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="contained">
+                Add
+              </Button>
+            </Box>
+          </Box>
+        </Modal>
+
+        {/* Display Filtered Restaurants */}
+        <Grid container spacing={2} sx={{ marginTop: "20px" }}>
+          {filteredRestaurants.map((restaurant) => (
+            <Grid item xs={12} sm={6} md={4} key={restaurant._id || restaurant.name}>
+              <Paper
+                sx={{
+                  padding: "10px",
+                  textAlign: "center",
+                  backgroundColor: "#1e1e1e",
+                  color: "white",
+                  height: "auto",
+                  width: "300px",
+                }}
+              >
+                <img
+                  src={restaurant.image}
+                  alt={restaurant.name}
+                  style={{
+                    width: "100%",
+                    height: "150px",
+                    objectFit: "cover",
+                    borderRadius: "5px",
+                    marginBottom: "10px",
+                  }}
+                />
+                <Typography variant="h6">{restaurant.name}</Typography>
+                <Typography variant="body2">{restaurant.description}</Typography>
+                <Typography variant="body2" mt={1}>
+                  ⭐ {restaurant.rating} | 📍 {restaurant.location}
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </div>
   );
 }
