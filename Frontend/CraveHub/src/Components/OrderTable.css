@@ -1,0 +1,75 @@
+.order-table-container {
+    padding: 2rem;
+    background-color: #111;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .order-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .order-search {
+    padding: 0.6rem 1rem;
+    background-color: #2a2f3a;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    width: 250px;
+  }
+  
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .order-table th,
+  .order-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  
+  .order-table th {
+    color: #ccc;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .order-table td {
+    font-size: 0.95rem;
+  }
+  
+  .status {
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+  }
+  
+  .status.delivered {
+    background-color: #c1f6d6;
+    color: #067647;
+  }
+  
+  .status.processing {
+    background-color: #fcecc7;
+    color: #a86e00;
+  }
+  
+  .status.shipped {
+    background-color: #cddaff;
+    color: #304ffe;
+  }
+  
+  .status.pending {
+    background-color: #ffd6d6;
+    color: #d32f2f;
+  }
+  

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -8,8 +8,6 @@ import {
   Grid,
   Paper,
 } from "@mui/material";
-import { useEffect } from "react";
-
 import AdminSidebar from "../Components/AdminSidebar";
 import AdminHeader from "../Components/AdminHeader";
 import { motion } from "framer-motion";
@@ -27,22 +25,22 @@ export default function AddRestaurant() {
     rating: "",
     location: "",
     phoneNo: "",
+    category: "",
     menuDishes: [],
   });
-  const totalRestaurants = restaurants.length;
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editingId, setEditingId] = useState(null);
 
-  const topRated = restaurants.filter(r => parseFloat(r.rating) >= 4.5).length;
-  
-  const uniqueCities = new Set(restaurants.map(r => r.location)).size;
-  
-  const contactCount = restaurants.filter(r => r.phoneNo).length;
-  
+  const totalRestaurants = restaurants.length;
+  const topRated = restaurants.filter((r) => parseFloat(r.rating) >= 4.5).length;
+  const uniqueCities = new Set(restaurants.map((r) => r.location)).size;
+  const contactCount = restaurants.filter((r) => r.phoneNo).length;
+
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
         const response = await fetch("http://localhost:5000/api/restaurants");
         const data = await response.json();
-  
         if (response.ok) {
           setRestaurants(data);
         } else {
@@ -52,10 +50,9 @@ export default function AddRestaurant() {
         console.error("Error fetching restaurants:", error);
       }
     };
-  
     fetchRestaurants();
   }, []);
-  
+
   const handleChange = (e) => {
     setRestaurantData({ ...restaurantData, [e.target.name]: e.target.value });
   };
@@ -63,15 +60,29 @@ export default function AddRestaurant() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
+    if (isEditMode) {
+      const response = await fetch(
+        `http://localhost:5000/api/restaurants/${editingId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(restaurantData),
+        }
+      );
+      const updatedRestaurant = await response.json();
+      if (response.ok) {
+        setRestaurants((prev) =>
+          prev.map((r) => (r._id === editingId ? updatedRestaurant : r))
+        );
+        alert("Restaurant updated successfully!");
+      }
+    } else {
       const response = await fetch("http://localhost:5000/api/restaurants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(restaurantData),
       });
-
       const data = await response.json();
-
       if (response.ok) {
         alert("Restaurant added successfully!");
         setRestaurants((prev) => [...prev, data]);
@@ -88,13 +99,39 @@ export default function AddRestaurant() {
       } else {
         alert(data.message || "Failed to add restaurant");
       }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Server error! Could not add restaurant.");
     }
   };
 
-  // Filtered restaurants based on searchTerm
+  const handleEdit = (restaurant) => {
+    setIsEditMode(true);
+    setEditingId(restaurant._id);
+    setRestaurantData(restaurant);
+    setOpen(true);
+  };
+
+  const handleDelete = async (id) => {
+    const confirm = window.confirm("Are you sure you want to delete this restaurant?");
+    if (!confirm) return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/restaurants/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        setRestaurants((prev) => prev.filter((r) => r._id !== id));
+        alert("Restaurant deleted!");
+      } else {
+        alert("Failed to delete restaurant");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Server error!");
+    }
+  };
+
   const filteredRestaurants = restaurants.filter((r) =>
     r.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -143,7 +180,7 @@ export default function AddRestaurant() {
               <StatCard
                 name="Cities Covered"
                 icon={MapPin}
-                value={uniqueCities} 
+                value={uniqueCities}
                 color="#EC4899"
               />
             </Grid>
@@ -176,7 +213,7 @@ export default function AddRestaurant() {
           </Button>
         </Box>
 
-        {/* Modal for Adding Restaurant */}
+        {/* Modal for Adding/Editing Restaurant */}
         <Modal open={open} onClose={() => setOpen(false)}>
           <Box
             component="form"
@@ -194,7 +231,7 @@ export default function AddRestaurant() {
             }}
           >
             <Typography variant="h6" mb={2}>
-              Add New Restaurant
+              {isEditMode ? "Edit Restaurant" : "Add New Restaurant"}
             </Typography>
             <TextField
               label="Name"
@@ -223,6 +260,25 @@ export default function AddRestaurant() {
               onChange={handleChange}
               required
             />
+            <TextField
+              select
+              SelectProps={{ native: true }}
+              fullWidth
+              margin="normal"
+              name="category"
+              value={restaurantData.category}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Category</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Continental">Continental</option>
+              <option value="Fast Food">Fast Food</option>
+              <option value="Italian">Italian</option>
+              <option value="BBQ">BBQ</option>
+              <option value="Cafe">Cafe</option>
+              <option value="Other">Other</option>
+            </TextField>
             <TextField
               label="Rating"
               type="number"
@@ -256,7 +312,7 @@ export default function AddRestaurant() {
                 Cancel
               </Button>
               <Button type="submit" variant="contained">
-                Add
+                {isEditMode ? "Update" : "Add"}
               </Button>
             </Box>
           </Box>
@@ -290,8 +346,16 @@ export default function AddRestaurant() {
                 <Typography variant="h6">{restaurant.name}</Typography>
                 <Typography variant="body2">{restaurant.description}</Typography>
                 <Typography variant="body2" mt={1}>
-                  ⭐ {restaurant.rating} | 📍 {restaurant.location}
+                  ⭐ {restaurant.rating} | 📍 {restaurant.location} | 🍽 {restaurant.category}
                 </Typography>
+                <Box mt={2}>
+                  <Button onClick={() => handleEdit(restaurant)} variant="outlined" color="primary" sx={{ mr: 1 }}>
+                    Edit
+                  </Button>
+                  <Button onClick={() => handleDelete(restaurant._id)} variant="outlined" color="error">
+                    Delete
+                  </Button>
+                </Box>
               </Paper>
             </Grid>
           ))}

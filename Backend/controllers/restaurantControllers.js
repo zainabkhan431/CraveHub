@@ -5,7 +5,7 @@ const Dish = require('../models/dishModel'); // Import the Dish model
 // @route POST /api/restaurants
 // @access Public (can be restricted to admin later if needed)
 const createRestaurant = async (req, res) => {
-  const { name, image, description, rating, location, menuDishes,phoneNo } = req.body;
+  const { name, image, description, rating, location, menuDishes,phoneNo,category } = req.body;
 
   // Check if the restaurant already exists
   const restaurantExists = await Restaurant.findOne({ name });
@@ -31,6 +31,7 @@ const createRestaurant = async (req, res) => {
       rating,
       location,
       phoneNo,
+      category,
       menu: dishIds, // Store dish IDs in the menu
     });
 
@@ -94,14 +95,14 @@ const getRestaurantMenu = async (req, res) => {
 // @route PUT /api/restaurants/:id
 // @access Public
 const updateRestaurant = async (req, res) => {
-  const { name, image, description, rating, location, menuDishes } = req.body;
+  const { name, image, description, rating, location, category, menuDishes } = req.body;
 
   try {
     const restaurant = await Restaurant.findById(req.params.id);
 
     if (restaurant) {
       // If menuDishes are provided, update them
-      let dishIds = restaurant.menu; // Keep existing menu items
+      let dishIds = restaurant.menu;
       if (menuDishes) {
         const newDishIds = await Promise.all(
           menuDishes.map(async (dishData) => {
@@ -110,7 +111,7 @@ const updateRestaurant = async (req, res) => {
             return savedDish._id;
           })
         );
-        dishIds = [...new Set([...dishIds, ...newDishIds])]; // Merge old and new dishes without duplicates
+        dishIds = [...new Set([...dishIds, ...newDishIds])];
       }
 
       restaurant.name = name || restaurant.name;
@@ -118,7 +119,8 @@ const updateRestaurant = async (req, res) => {
       restaurant.description = description || restaurant.description;
       restaurant.rating = rating || restaurant.rating;
       restaurant.location = location || restaurant.location;
-      restaurant.menu = dishIds; 
+      restaurant.category = category || restaurant.category;
+      restaurant.menu = dishIds;
 
       const updatedRestaurant = await restaurant.save();
       res.json(updatedRestaurant);
@@ -130,23 +132,26 @@ const updateRestaurant = async (req, res) => {
   }
 };
 
+
 // @desc Delete a restaurant
 // @route DELETE /api/restaurants/:id
 // @access Public
 const deleteRestaurant = async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id);
+    const deletedRestaurant = await Restaurant.findByIdAndDelete(req.params.id);
 
-    if (restaurant) {
-      await restaurant.remove();
+    if (deletedRestaurant) {
       res.json({ message: 'Restaurant removed' });
     } else {
       res.status(404).json({ message: 'Restaurant not found' });
     }
   } catch (error) {
+    console.error("DELETE ERROR:", error);
     res.status(500).json({ message: 'Server Error', error: error.message });
   }
 };
+
+
 
 module.exports = {
   getRestaurants,

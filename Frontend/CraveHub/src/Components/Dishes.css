@@ -17,7 +17,7 @@
 }
 
 /* ====== Reservation Form ====== */
-.reservation-form, 
+ 
 .budget-input-container {
   width: 50%; 
   margin-top: 30px;
@@ -27,26 +27,43 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+.reservation-form {
+  background-color: #fff;
+  padding: 0.7rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+}
 
 .reservation-form h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
   text-align: center;
-  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
 }
 
 .reservation-form form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 }
 
 .form-row {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
-.form-row input,
+.form-row input {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
 .form-row select {
   flex: 1;
   padding: 10px;
@@ -80,36 +97,47 @@
 }
 
 /* ====== Sidebar ====== */
-.sidebar {
+.sidebar-dishes {
   width: 200px;
+  margin-top: 20px;
   background: white;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
+.sidebar-dishes ul li {
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: background-color 0.2s, color 0.2s;
+}
 
-.sidebar h3 {
+.sidebar-dishes ul li.active {
+  background-color: #ff7b00;; /* Example: tomato red */
+  color: white;
+  border-radius: 4px;
+}
+.sidebar-dishes  h3 {
   font-size: 18px;
   margin-bottom: 10px;
 }
 
-.sidebar ul {
+.sidebar-dishes  ul {
   list-style: none;
   padding: 0;
 }
 
-.sidebar ul li {
+.sidebar-dishes  ul li {
   padding: 8px;
   cursor: pointer;
   border-radius: 4px;
 }
 
-.sidebar ul li:hover {
+.sidebar-dishes  ul li:hover {
   background: #ff7b00;
   color: white;
 }
 
-.sidebar input[type="range"] {
+.sidebar-dishes  input[type="range"] {
   width: 100%;
   margin-top: 5px;
 }

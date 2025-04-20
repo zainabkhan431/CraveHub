@@ -160,11 +160,11 @@
     display: block;
   }
 
-  @media (max-width:1220px){
+  /* @media (max-width:1220px){
     .navbar{
       width: 95%;
     }
-  }
+  } */
   
 @media (max-width: 1000px) {
 .navbar-logo {
@@ -182,9 +182,9 @@
 
 }
 @media (max-width: 840px) {
-  .navbar{
+  /* .navbar{
     width: 93%;
-  }
+  } */
   .navbar-logo {
       font-size: 22px;   
   }
@@ -200,9 +200,9 @@
   
   }
   @media (max-width: 740px) {
-    .navbar{
+    /* .navbar{
       width: 91%;
-    }
+    } */
     .navbar-logo {
       font-size: 15px; 
       margin-left: -27px;

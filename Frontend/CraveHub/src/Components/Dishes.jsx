@@ -26,8 +26,7 @@ export default function Dishes() {
     time: '',
     name: '',
     phone: '',
-    preBooking: false,
-    selectedDish: '',
+   
   });
 
   // Handle input change for reservation form
@@ -50,8 +49,7 @@ export default function Dishes() {
       time: '',
       name: '',
       phone: '',
-      preBooking: false,
-      selectedDish: '',
+    
     });
   };
 
@@ -99,17 +97,19 @@ export default function Dishes() {
      
 
         {/* Sidebar for Filters */}
-        <div className="sidebar">
+        <div className="sidebar-dishes ">
           <h3>Food Types</h3>
           <ul>
-            <li onClick={() => setSelectedType('All')}>All</li>
-            <li onClick={() => setSelectedType('Pizza')}>Pizza</li>
-            <li onClick={() => setSelectedType('Burgers')}>Burgers</li>
-            <li onClick={() => setSelectedType('Salads')}>Salads</li>
-            <li onClick={() => setSelectedType('Tacos')}>Tacos</li>
-            <li onClick={() => setSelectedType('Wraps')}>Wraps</li>
-            <li onClick={() => setSelectedType('Fries')}>Fries</li>
-            <li onClick={() => setSelectedType('Drinks')}>Drinks</li>
+          <li className={selectedType === 'All' ? 'active' : ''} onClick={() => setSelectedType('All')}>All</li>
+
+            <li className={selectedType === 'Pizza' ? 'active' : ''} onClick={() => setSelectedType('Pizza')}> Pizza </li>
+
+            <li className={selectedType === 'Burgers' ? 'active' : ''} onClick={() => setSelectedType('Burgers')}> Burgers </li>
+            <li className={selectedType === 'Salads' ? 'active' : ''} onClick={() => setSelectedType('Salads')}> Salads </li>
+            <li className={selectedType === 'Taco' ? 'active' : ''} onClick={() => setSelectedType('Taco')}> Taco </li>
+            <li className={selectedType === 'Wraps' ? 'active' : ''} onClick={() => setSelectedType('Wraps')}> Wraps </li>
+            <li className={selectedType === 'Fries' ? 'active' : ''} onClick={() => setSelectedType('Fries')}> Fries </li>
+            <li className={selectedType === 'Drinks' ? 'active' : ''} onClick={() => setSelectedType('Drinks')}> Drinks </li>
           </ul>
           <h3>Filter by Price</h3>
           <input type="range" min="1" max="20" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
@@ -131,18 +131,7 @@ export default function Dishes() {
               <input type="text" name="name" placeholder="Full Name" value={reservation.name} onChange={handleReservationChange} required />
               <input type="tel" name="phone" placeholder="Phone No" value={reservation.phone} onChange={handleReservationChange} required />
             </div>
-            <div className="form-row pre-booking">
-              <input type="checkbox" name="preBooking" checked={reservation.preBooking} onChange={handleReservationChange} />
-              <label>Pre-book Food</label>
-              {reservation.preBooking && (
-                <select name="selectedDish" value={reservation.selectedDish} onChange={handleReservationChange}>
-                  <option value="">Select Dish</option>
-                  {dishData.map((dish) => (
-                    <option key={dish.id} value={dish.name}>{dish.name} - ${dish.price}</option>
-                  ))}
-                </select>
-              )}
-            </div>
+           
             <button type="submit">Submit</button>
           </form>
         </div>

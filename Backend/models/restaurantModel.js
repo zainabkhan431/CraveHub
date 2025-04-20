@@ -31,6 +31,11 @@ const restaurantSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+    enum: ['Chinese', 'Continental', 'Fast Food', 'Italian', 'BBQ', 'Cafe', 'Other'], // Customize as needed
+  },
   menu: [
     {
       type: mongoose.Schema.Types.ObjectId, // Reference to the Dish model

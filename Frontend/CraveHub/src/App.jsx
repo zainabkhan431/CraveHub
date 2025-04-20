@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute.jsx";
 import { AuthProvider } from "./AuthContext.jsx";
 import AddRestaurant from "./pages/AddResturant.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Order from "./pages/Order.jsx";
 
 
 
@@ -39,6 +40,8 @@ export default function App() {
           <Route path="/RestaurantAbout" element={<PrivateRoute element={<RestaurantAbout />} />} />
           <Route path="/restaurants" element={<AddRestaurant />} />
           <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/orders" element={<Order />} />
+
           <Route path="/RestaurantBlogs" element={<PrivateRoute element={<RestaurantBlogs />} />} />
           <Route path="/BlogDetail" element={<PrivateRoute element={<BlogDetail />} />} />
           <Route path="/RestaurantBlogs/BlogDetail" element={<PrivateRoute element={<BlogDetail />} />} />
