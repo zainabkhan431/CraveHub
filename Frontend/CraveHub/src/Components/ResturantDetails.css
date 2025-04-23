@@ -97,7 +97,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
   width: 90%;
-  height: 700px;
+  min-height: 400px;
 }
 
 /* .restaurant-card:hover {
@@ -144,6 +144,8 @@
 .restaurant-status {
   margin-top: 10px;
   font-size: 19px;
+  /* display: flex;
+  justify-content: center; */
 }
 .text-styles{
   margin-top: 20px;

@@ -38,11 +38,12 @@
     padding-top: 260px;
     background-color: rgb(222, 217, 194); /* Form background */
     width: 700px;
-    height: 619px;
+    height: 700px;
     padding: 40px 30px; /* Inner spacing for content */
    
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     text-align: center;
+    overflow-y: hidden;
   }
   
   .login-form h2 {

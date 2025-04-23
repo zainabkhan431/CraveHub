@@ -7,7 +7,8 @@ import fastfood from "../assets/food1.jpg";
 import chinese from "../assets/chinese.jpg";
 import continental from "../assets/continental.jpg";
 import indian from "../assets/indian.jpg";
-import japanese from "../assets/japanese.jpg";
+import cafe from "../assets/cafe.jpg";
+import other from "../assets/other.jpg";
 import category1 from "../assets/category1.svg";
 import category2 from "../assets/category2.svg";
 import category3 from "../assets/category3.svg";
@@ -21,8 +22,10 @@ export default function CategoriesDetail() {
     { id: 1, name: "Chinese", image: chinese },
     { id: 2, name: "Continental", image: continental },
     { id: 3, name: "Fast Food", image: fastfood },
-    { id: 5, name: "Indian", image: indian },
-    { id: 6, name: "Japanese", image: japanese },
+    { id: 5, name: "Desi", image: indian },
+    { id: 6, name: "Cafe", image: cafe },
+    { id: 7, name: "Other", image: other },
+
   ];
 
   const allCategories = [

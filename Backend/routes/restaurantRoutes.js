@@ -15,6 +15,4 @@ router.delete('/:id', deleteRestaurant);
 // Get dishes of a restaurant
 router.get('/:id/menu', getRestaurantMenu);
 
-
-
 module.exports = router;

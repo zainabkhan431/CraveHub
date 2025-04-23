@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   Box,
   Button,
@@ -30,7 +32,7 @@ export default function AddRestaurant() {
   });
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingId, setEditingId] = useState(null);
-
+  const navigate = useNavigate();
   const totalRestaurants = restaurants.length;
   const topRated = restaurants.filter((r) => parseFloat(r.rating) >= 4.5).length;
   const uniqueCities = new Set(restaurants.map((r) => r.location)).size;
@@ -355,6 +357,19 @@ export default function AddRestaurant() {
                   <Button onClick={() => handleDelete(restaurant._id)} variant="outlined" color="error">
                     Delete
                   </Button>
+                  <Button variant="outlined" color="inherit"
+  onClick={() =>
+    navigate("/restaurants/adddishes", {
+      state: {
+        restaurantId: restaurant._id,
+        name: restaurant.name,
+        category: restaurant.category,
+      },
+    })
+  }
+>
+  Add Menu
+</Button>
                 </Box>
               </Paper>
             </Grid>

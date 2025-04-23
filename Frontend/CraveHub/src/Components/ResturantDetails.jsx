@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Rating from "./Rating";
-import { FaMapMarkerAlt, FaPhoneAlt, FaStar, FaMoneyBillWave, FaInfoCircle, FaFilter, FaSearch } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhoneAlt, FaStar, FaMoneyBillWave, FaInfoCircle, FaFilter } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 
 import "./ResturantDetails.css";
@@ -87,7 +87,7 @@ export default function RestaurantDetails() {
     <div className="restaurant-page">
       {/* Search Bar */}
       <div className="search-bar">
-        <FaSearch className="search-icon" />
+       
         <input
           type="text"
           placeholder="Search restaurants..."

@@ -4,6 +4,8 @@ const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
 const cartRoutes = require('./routes/cartRoutes');
+const dishRoutes = require('./routes/dishRoutes');
+
 const cors = require("cors");
 
 // Load environment variables
@@ -21,6 +23,7 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api', cartRoutes);
+app.use('/api/dishes', dishRoutes);
 
 // Default route
 // app.get('/', (req, res) => {

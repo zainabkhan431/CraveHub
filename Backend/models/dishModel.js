@@ -5,6 +5,14 @@ const dishSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  description:{
+type:String,
+require:true,
+  },
+  category:{
+    type:String,
+    require:true,
+      },
   offer: {
     type: String, // Assuming this field holds some type of offer, e.g., discount
   },
@@ -27,6 +35,7 @@ const dishSchema = mongoose.Schema({
     type: [String], // Array of sauces, e.g., ketchup, mayo, etc.
     required: true,
   },
+
 });
 
 const Dish = mongoose.model('Dish', dishSchema);

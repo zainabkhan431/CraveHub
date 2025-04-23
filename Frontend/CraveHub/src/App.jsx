@@ -14,6 +14,7 @@ import { AuthProvider } from "./AuthContext.jsx";
 import AddRestaurant from "./pages/AddResturant.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Order from "./pages/Order.jsx";
+import AddDishes from "./pages/AddDishes.jsx"
 
 
 
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/restaurants" element={<AddRestaurant />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/orders" element={<Order />} />
+          <Route path="/restaurants/adddishes" element={<AddDishes />} />
 
           <Route path="/RestaurantBlogs" element={<PrivateRoute element={<RestaurantBlogs />} />} />
           <Route path="/BlogDetail" element={<PrivateRoute element={<BlogDetail />} />} />

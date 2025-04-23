@@ -1,5 +1,6 @@
 import "./Header.css";
 import arrow from "../assets/right-arrow.png";
+import { Link } from "react-router-dom";
 export default function Header() {
  
   
@@ -11,7 +12,8 @@ export default function Header() {
       Discover the best dining experiences around you!
       </p>
       </div>
-      <button className="btn"> Explore Now <img src={arrow}/> </button>
+      <Link to={"/RestaurantCategories"}>
+     <button className="btn"> Explore Now <img src={arrow}/> </button> </Link>
     
     </div>
   )
