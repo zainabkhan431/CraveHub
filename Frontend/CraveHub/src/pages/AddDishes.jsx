@@ -16,6 +16,7 @@ import { Plus } from "lucide-react";
 export default function AddDishes() {
     const location = useLocation();
 const { restaurantId, name, category } = location.state || {};
+console.log(name)
   const [dishes, setDishes] = useState([]);
   const [open, setOpen] = useState(false);
   const [dishData, setDishData] = useState({
@@ -34,7 +35,7 @@ const { restaurantId, name, category } = location.state || {};
 
   const fetchDishes = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/dishes");
+      const res = await fetch(`http://localhost:5000/api/dishes/resturant/${restaurantId}`);
       const data = await res.json();
       if (res.ok) setDishes(data);
     } catch (error) {
@@ -71,6 +72,13 @@ const { restaurantId, name, category } = location.state || {};
 
       const result = await res.json();
       if (res.ok) {
+        if (!isEditMode) {
+            await fetch(`http://localhost:5000/api/restaurants/${restaurantId}/addDish`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ dishId: result._id }), // pass only dishId
+            });
+          }
         fetchDishes();
         setOpen(false);
         setDishData({
@@ -83,6 +91,8 @@ const { restaurantId, name, category } = location.state || {};
           ingredients: [],
           flavors: [],
           sauces: [],
+          restaurantId: restaurantId || "", // reset with restaurantId
+
         });
         setIsEditMode(false);
         alert(`Dish ${isEditMode ? "updated" : "added"} successfully!`);
@@ -96,7 +106,7 @@ const { restaurantId, name, category } = location.state || {};
   };
 
   const handleEdit = (dish) => {
-    setDishData(dish);
+    setDishData({ ...dish, restaurantId });
     setEditingId(dish._id);
     setIsEditMode(true);
     setOpen(true);

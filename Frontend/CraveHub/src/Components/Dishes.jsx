@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import yums1 from "../assets/yums3.png";
 import "./Dishes.css";
@@ -13,23 +14,19 @@ const dishData = [
   { id: 7, name: "Lemonade", type: "Drinks", price: 3, image: "https://via.placeholder.com/150" },
 ];
 
-export default function Dishes() {
+export default function Dishes({ addToCart }) {
   const [selectedType, setSelectedType] = useState('All');
   const [maxPrice, setMaxPrice] = useState(20);
   const [budget, setBudget] = useState('');
   const [comboResults, setComboResults] = useState([]);
 
-  // Reservation form state
   const [reservation, setReservation] = useState({
     guests: '',
     date: '',
     time: '',
     name: '',
     phone: '',
-   
   });
-
-  // Handle input change for reservation form
   const handleReservationChange = (e) => {
     const { name, value, type, checked } = e.target;
     setReservation((prev) => ({
@@ -37,8 +34,6 @@ export default function Dishes() {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-
-  // Handle reservation submit
   const handleReservationSubmit = (e) => {
     e.preventDefault();
     console.log("Reservation Details:", reservation);
@@ -52,23 +47,20 @@ export default function Dishes() {
     
     });
   };
-
-  // Handle numeric input only
   const handleInputChange = (e) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
       setBudget(value);
     }
   };
-
-  // Function to find combos that exactly match the budget
   const findCombos = () => {
     const budgetValue = parseInt(budget);
     if (!budgetValue || budgetValue <= 0) {
       setComboResults([]);
       return;
     }
-
+  // Handle reservation submit
+ 
     const results = [];
     const findExactCombos = (combo, index, total) => {
       if (total === budgetValue) {
@@ -84,40 +76,43 @@ export default function Dishes() {
     findExactCombos([], 0, 0);
     setComboResults(results);
   };
-
+  // Filter dishes based on selected type and max price
   const filteredDishes = dishData.filter(dish =>
     (selectedType === 'All' || dish.type === selectedType) && dish.price <= maxPrice
   );
 
+  // Handle "Add to Cart" button click
+  const handleAddToCart = (dish) => {
+    addToCart(dish); // Add selected dish to the cart
+  };
+
   return (
     <div className="dishes-section">
       <img src={yums1} className="header-image" alt="header" />
-
       <div className="dishes-content">
-     
-
         {/* Sidebar for Filters */}
-        <div className="sidebar-dishes ">
+        <div className="sidebar-dishes">
+          {/* Filter by Food Type */}
           <h3>Food Types</h3>
           <ul>
-          <li className={selectedType === 'All' ? 'active' : ''} onClick={() => setSelectedType('All')}>All</li>
-
-            <li className={selectedType === 'Pizza' ? 'active' : ''} onClick={() => setSelectedType('Pizza')}> Pizza </li>
-
-            <li className={selectedType === 'Burgers' ? 'active' : ''} onClick={() => setSelectedType('Burgers')}> Burgers </li>
-            <li className={selectedType === 'Salads' ? 'active' : ''} onClick={() => setSelectedType('Salads')}> Salads </li>
-            <li className={selectedType === 'Taco' ? 'active' : ''} onClick={() => setSelectedType('Taco')}> Taco </li>
-            <li className={selectedType === 'Wraps' ? 'active' : ''} onClick={() => setSelectedType('Wraps')}> Wraps </li>
-            <li className={selectedType === 'Fries' ? 'active' : ''} onClick={() => setSelectedType('Fries')}> Fries </li>
-            <li className={selectedType === 'Drinks' ? 'active' : ''} onClick={() => setSelectedType('Drinks')}> Drinks </li>
+            <li className={selectedType === 'All' ? 'active' : ''} onClick={() => setSelectedType('All')}>All</li>
+            <li className={selectedType === 'Pizza' ? 'active' : ''} onClick={() => setSelectedType('Pizza')}>Pizza</li>
+            <li className={selectedType === 'Burgers' ? 'active' : ''} onClick={() => setSelectedType('Burgers')}>Burgers</li>
+            <li className={selectedType === 'Salads' ? 'active' : ''} onClick={() => setSelectedType('Salads')}>Salads</li>
+            <li className={selectedType === 'Tacos' ? 'active' : ''} onClick={() => setSelectedType('Tacos')}>Tacos</li>
+            <li className={selectedType === 'Wraps' ? 'active' : ''} onClick={() => setSelectedType('Wraps')}>Wraps</li>
+            <li className={selectedType === 'Fries' ? 'active' : ''} onClick={() => setSelectedType('Fries')}>Fries</li>
+            <li className={selectedType === 'Drinks' ? 'active' : ''} onClick={() => setSelectedType('Drinks')}>Drinks</li>
           </ul>
+
+          {/* Filter by Price */}
           <h3>Filter by Price</h3>
           <input type="range" min="1" max="20" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
           <p>Max Price: ${maxPrice}</p>
         </div>
 
-        {/* Dish Display Section */}
-        <div className="dish-display">
+             {/* Dish Display Section */}
+             <div className="dish-display">
              {/* Reservation Form */}
         <div className="reservation-form">
           <h2>Reserve A Table</h2>
@@ -168,8 +163,7 @@ export default function Dishes() {
                 <h4>{dish.name}</h4>
                 <p>Type: {dish.type}</p>
                 <p>Price: ${dish.price}</p>
-                <button>Add to Cart</button>
-              </div>
+                <button onClick={() => handleAddToCart(dish)}>Add to Cart</button>              </div>
             ))}
           </div>
         </div>

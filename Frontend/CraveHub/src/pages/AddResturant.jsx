@@ -45,6 +45,7 @@ export default function AddRestaurant() {
         const data = await response.json();
         if (response.ok) {
           setRestaurants(data);
+          
         } else {
           console.error("Failed to fetch restaurants");
         }

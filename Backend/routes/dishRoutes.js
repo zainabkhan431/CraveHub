@@ -5,7 +5,8 @@ const {
   getAllDishes,
   getDishById,
   updateDish,
-  deleteDish
+  deleteDish,
+  getAllDishesByResturantId
 } = require('../controllers/dishController');
 
 // Create a new dish
@@ -16,6 +17,8 @@ router.get('/', getAllDishes);
 
 // Get a dish by ID
 router.get('/:id', getDishById);
+
+router.get('/resturant/:restaurantId', getAllDishesByResturantId);
 
 // Update a dish by ID
 router.put('/:id', updateDish);

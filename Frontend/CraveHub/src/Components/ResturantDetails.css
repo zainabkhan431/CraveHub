@@ -4,6 +4,7 @@
   flex-direction: column;
   padding: 20px;
   background-color: rgba(10, 19, 22, 1);
+  height: 100vh;
 }
 
 .content-wrapper {
@@ -149,4 +150,14 @@
 }
 .text-styles{
   margin-top: 20px;
+}
+.loading, .error, .no-results {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+  color: white;
+}
+.error {
+  color: red;
 }

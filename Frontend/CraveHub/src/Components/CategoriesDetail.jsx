@@ -70,7 +70,7 @@ export default function CategoriesDetail() {
             <div className="container">
               {filteredCategories.map((category) => (
                 <div key={category.id} className="category-card">
-                  <Link to="/restaurant-details">
+                  <Link to={`/restaurant-details?category=${category.name}`}>
                     <img
                       src={category.image}
                       alt={category.name}

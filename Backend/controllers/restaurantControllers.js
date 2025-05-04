@@ -95,10 +95,15 @@ const getRestaurantMenu = async (req, res) => {
 // @route PUT /api/restaurants/:id
 // @access Public
 const updateRestaurant = async (req, res) => {
+  const { dishId } = req.body;
+  const { restaurantId } = req.params;
   const { name, image, description, rating, location, category, menuDishes } = req.body;
 
   try {
-    const restaurant = await Restaurant.findById(req.params.id);
+    const restaurant = await Restaurant.findById(  restaurantId,
+      { $push: { menuDishes: dishId } },
+      { new: true }
+    ).populate("menuDishes");
 
     if (restaurant) {
       // If menuDishes are provided, update them
@@ -150,14 +155,41 @@ const deleteRestaurant = async (req, res) => {
     res.status(500).json({ message: 'Server Error', error: error.message });
   }
 };
+const getRestaurantsByCategory = async (req, res) => {
+  const { category } = req.params;
+  try {
+    const restaurants = await Restaurant.find({ category }).populate('menu');
 
+    if (restaurants.length === 0) {
+      return res.status(404).json({ message: 'No restaurants found in this category' });
+    }
 
+    res.json(restaurants);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
 
+// const getRestaurantsByCategory = async (req, res) => {
+//   const { category } = req.params;
+//   try {
+//     const restaurants = await Restaurant.find({ category }).populate('menu');
+
+//     if (restaurants.length === 0) {
+//       return res.status(404).json({ message: 'No restaurants found in this category' });
+//     }
+
+//     res.json(restaurants);
+//   } catch (error) {
+//     res.status(500).json({ message: 'Server Error', error: error.message });
+//   }
+// };
 module.exports = {
   getRestaurants,
   createRestaurant,
   getRestaurantById,
   deleteRestaurant,
   updateRestaurant,
-  getRestaurantMenu
+  getRestaurantMenu,
+  getRestaurantsByCategory
 };

@@ -35,6 +35,11 @@ require:true,
     type: [String], // Array of sauces, e.g., ketchup, mayo, etc.
     required: true,
   },
+  restaurantId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "restaurantModel", // or whatever your restaurant model is named
+    required: true,
+  },
 
 });
 

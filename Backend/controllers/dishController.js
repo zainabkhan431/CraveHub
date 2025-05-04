@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const Dish = require('../models/dishModel');
 
 // @desc Create a new dish
@@ -5,7 +6,25 @@ const Dish = require('../models/dishModel');
 // @access Public
 const createDish = async (req, res) => {
   try {
-    const dish = new Dish(req.body);
+    const { name, price, description, image, restaurantId, ingredients, flavors, sauces, category, offer } = req.body;
+
+    if (!restaurantId) {
+      return res.status(400).json({ message: 'restaurantId is required' });
+    }
+
+    const dish = new Dish({ 
+      name, 
+      price, 
+      description, 
+      image, 
+      restaurantId: new mongoose.Types.ObjectId(restaurantId),
+      ingredients,
+      flavors,
+      sauces,
+      category,
+      offer
+    });
+
     const savedDish = await dish.save();
     res.status(201).json(savedDish);
   } catch (error) {
@@ -13,18 +32,36 @@ const createDish = async (req, res) => {
   }
 };
 
+
 // @desc Get all dishes
 // @route GET /api/dishes
 // @access Public
 const getAllDishes = async (req, res) => {
-  try {
-    const dishes = await Dish.find();
-    res.json(dishes);
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to fetch dishes', error: error.message });
-  }
-};
+    try {
+      const { restaurantId } = req.query;
+  
+      const filter = restaurantId ? { restaurantId } : {};
+  
+      const dishes = await Dish.find(filter);
+      res.json(dishes);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch dishes', error: error.message });
+    }
+  };
 
+
+
+  const getAllDishesByResturantId = async (req, res) => {
+    const { restaurantId } = req.params;
+    console.log("HERE==>", restaurantId)
+    try {
+      const dishes = await Dish.find({ restaurantId });
+      res.status(200).json(dishes);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };
 // @desc Get a single dish by ID
 // @route GET /api/dishes/:id
 // @access Public
@@ -83,4 +120,5 @@ module.exports = {
   getDishById,
   updateDish,
   deleteDish,
+  getAllDishesByResturantId
 };
